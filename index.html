@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cyber Delta Force</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    body {
+      background: black;
+      color: #00ff00;
+      overflow-x: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 30px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .site-logo {
+      width: 180px;
+      max-width: 80%;
+      height: auto;
+      filter: drop-shadow(0 0 10px #00ff00);
+      animation: glowPulse 2s infinite alternate;
+    }
+
+    @keyframes glowPulse {
+      from {
+        filter: drop-shadow(0 0 10px #00ff00);
+      }
+      to {
+        filter: drop-shadow(0 0 20px #00ff00);
+      }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 100px 20px 50px;
+    }
+
+    h1 {
+      font-size: 3em;
+      text-shadow: 0 0 15px #00ff00;
+    }
+
+    p {
+      font-size: 1.2em;
+      max-width: 800px;
+      margin: 20px auto;
+      text-shadow: 0 0 5px #00ff00;
+    }
+
+    .btn {
+      margin-top: 30px;
+      padding: 12px 24px;
+      background-color: transparent;
+      border: 2px solid #00ff00;
+      color: #00ff00;
+      cursor: pointer;
+      font-size: 1em;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #00ff00;
+      color: black;
+    }
+
+    section {
+      padding: 80px 20px;
+      border-top: 1px solid #00ff00;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2em;
+      margin-bottom: 40px;
+      text-shadow: 0 0 10px #00ff00;
+    }
+
+    .members {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .member-card {
+      background: rgba(0, 255, 0, 0.05);
+      border: 1px solid #00ff00;
+      padding: 20px;
+      border-radius: 12px;
+      width: 250px;
+      box-shadow: 0 0 10px #00ff0022;
+      transition: transform 0.3s;
+    }
+
+    .member-card:hover {
+      transform: scale(1.05);
+    }
+
+    .member-name {
+      font-size: 1.3em;
+      margin-bottom: 8px;
+    }
+
+    .member-role {
+      font-size: 0.95em;
+      color: #aaffaa;
+    }
+
+    .contact-info {
+      max-width: 500px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 12px;
+      background: rgba(0, 255, 0, 0.05);
+      border: 1px solid rgba(0, 255, 0, 0.3);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+      text-shadow: 0 0 5px #00ff00;
+      transition: 0.3s;
+    }
+
+    .contact-info p {
+      margin: 10px 0;
+    }
+
+    .social-icons {
+      max-width: 500px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 12px;
+      background: rgba(0, 255, 0, 0.05);
+      border: 1px solid rgba(0, 255, 0, 0.3);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+      text-shadow: 0 0 5px #00ff00;
+      transition: 0.3s;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .social-icons a img {
+      width: 32px;
+      height: 32px;
+      transition: transform 0.3s, filter 0.3s;
+      filter: brightness(0) saturate(100%) invert(68%) sepia(99%) saturate(563%) hue-rotate(66deg) brightness(99%) contrast(107%);
+    }
+
+    .social-icons a img:hover {
+      transform: scale(1.2);
+      filter: brightness(1.5) drop-shadow(0 0 5px #00ff00);
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+
+  <div class="logo-wrapper">
+    <img src="https://images.pexels.com/photos/31746241/pexels-photo-31746241.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Cyber Delta Force Logo" class="site-logo">
+  </div>
+ <div class="blur-box">
+      <p>Hello, we are Cyber Delta Force team! We work for the security of the country! And if you want to work shoulder to shoulder with us, then contact us. Our email and telegram channel links are given below! And we have two sectors, one is the junior sector, the other is the senior sector. Now here are four people who have joined the sector, their names and details are mentioned! Digital defenders. White hat Team. We scan, we break, we protect.</p>
+    </div>
+       
+
+  <section id="members">
+    <h2>Our Members</h2>
+    <div class="members">
+      <div class="member-card">
+        <div class="member-name">🕶️ [main admin] x!t eXploIteR [omar_faruk]</div>
+        <div class="member-role">Lead Penetration Tester & exploit the website vulnerability</div>
+      </div>
+      <div class="member-card">
+        <div class="member-name">🛡️ AstrO BlazE [arnob]</div>
+        <div class="member-role">inforamation gathering master</div>
+      </div>
+      <div class="member-card">
+        <div class="member-name">🧠 OSKER999 [jitu]</div>
+        <div class="member-role">Facebook speacialist </div>
+      </div>
+      <div class="member-card">
+        <div class="member-name">🎯 Gl!cthHuNt3r [samir]</div>
+        <div class="member-role">Bug Bounty Hunter & website designer</div>
+      </div>
+    </div>
+  </section>
+<!-- Terminal Box -->
+<div style="display: flex; justify-content: center; margin-top: 80px;">
+  <div style="
+    background-color: rgba(0, 0, 0, 0.85); 
+    padding: 20px; 
+    border: 2px solid #00ff00; 
+    border-radius: 10px; 
+    color: #00ff00; 
+    font-family: monospace; 
+    width: 90%; 
+    max-width: 700px; 
+    box-shadow: 0 0 15px #00ff00;
+    text-align: left;
+    white-space: pre-wrap;
+    overflow-y: auto;
+    min-height: 150px;
+  ">
+    <div id="terminalText"></div>
+  </div>
+</div>
+
+<script>
+  const terminalString = `Entering server of Cyber Delta Force...
+[✓]       >_<   Loading matrix core...
+[✓] Scanning for targets...
+[✓]     Vulnerability found: SQL Injection
+[!]  [.................>]Exploiting the vuln...
+[✓] [.................................>] Bypass successful
+[✓] [...................>] Access granted to /admin/dashboard
+[✓] [...........>]Dumping credentials
+[✓] [.......................................>]Data exfiltration in progress...
+[✓] *_*    Database Hacked Succesful !!! 
+[✓]                  Mission complete.
+Welcome, X!T eXplOiteR`;
+
+  let index = 0;
+  const speed = 50;
+  const terminalElement = document.getElementById("terminalText");
+
+  function typeTerminalText() {
+    if (index < terminalString.length) {
+      terminalElement.innerHTML += terminalString.charAt(index);
+      index++;
+      setTimeout(typeTerminalText, speed);
+    }
+  }
+
+  window.onload = typeTerminalText;
+</script>
+<!-- Clock + Typing + Hacker Image -->
+<div style="display: flex; justify-content: center; align-items: center; gap: 40px; margin-top: 50px; flex-wrap: wrap;">
+  
+  <!-- Circle Clock -->
+  <div id="hackerClock" style="
+    font-size: 2em;
+    color: #00ff00;
+    text-shadow: 0 0 10px #00ff00;
+    font-family: 'Courier New', monospace;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 3px solid #00ff00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,255,0,0.05);
+    box-shadow: 0 0 20px #00ff0055, inset 0 0 10px #00ff00;
+    animation: glowClock 2s infinite alternate;
+  ">⌛ 00:00:00</div>
+
+  <!-- Hacker Typing Terminal -->
+  <div style="
+    background-color: rgba(0,0,0,0.9); 
+    padding: 20px;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    font-family: monospace;
+    width: 300px;
+    height: 180px;
+    border-radius: 12px;
+    overflow-y: hidden;
+    box-shadow: 0 0 15px #00ff00;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  ">
+    <div style="margin-bottom: 10px; color: #0f0;">👨‍💻 Hacker Typing:</div>
+    <div id="typingEffect" style="white-space: pre-line;"></div>
+  </div>
+
+  <!-- Hacker Image -->
+  <div>
+    <img src="https://images.pexels.com/photos/5380589/pexels-photo-5380589.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Real Hacker" style="
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid #00ff00;
+      box-shadow: 0 0 20px #00ff00;
+    ">
+  </div>
+</div>
+
+<style>
+  @keyframes glowClock {
+    from {
+      box-shadow: 0 0 10px #00ff00, inset 0 0 5px #00ff00;
+    }
+    to {
+      box-shadow: 0 0 25px #00ff00, inset 0 0 15px #00ff00;
+    }
+  }
+</style>
+
+<script>
+  // Clock
+  function updateClock() {
+    const clockElement = document.getElementById("hackerClock");
+    const now = new Date();
+
+    let hours = now.getHours().toString().padStart(2, '0');
+    let minutes = now.getMinutes().toString().padStart(2, '0');
+    let seconds = now.getSeconds().toString().padStart(2, '0');
+
+    clockElement.textContent = `⌛ ${hours}:${minutes}:${seconds}`;
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  // Typing effect
+  const randomLines = [
+    "nmap -sV -T4 192.168.1.1",
+    "sqlmap -u http://target.com/login --dump",
+    "hydra -l admin -P rockyou.txt target ssh",
+    "nc -lvnp 4444",
+    "scp exploit.py user@target:/tmp",
+    "python3 exploit.py",
+    "msfconsole > use exploit/windows/smb/ms17_010_eternalblue",
+    "ssh root@192.168.1.10",
+    "echo 'Access Granted' >> logs.txt",
+    "cat /etc/passwd"
+  ];
+
+  const typingEl = document.getElementById("typingEffect");
+
+  function typeHackerStuff() {
+    let line = randomLines[Math.floor(Math.random() * randomLines.length)];
+    let i = 0;
+    const interval = setInterval(() => {
+      typingEl.textContent += line.charAt(i);
+      i++;
+      if (i >= line.length) {
+        typingEl.textContent += '\n';
+        clearInterval(interval);
+        setTimeout(typeHackerStuff, 1000);
+      }
+    }, 50);
+  }
+
+  typeHackerStuff();
+</script>
+
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+      <p>📧 Email: cyberdeltaforce@gmail.com</p>
+      <p>
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="Telegram" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;">
+        @t.me/websiteatck
+      </p>
+    </div>
+  </section>
+
+  <section id="follow">
+    <h2>Follow Us</h2>
+    <div class="social-icons">
+      <a href="https://github.com/linuxomar69/" title="GitHub" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61571864574929" title="Facebook" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg" alt="Facebook">
+      </a>
+    </div>
+  </section>
+
+  <script>
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%";
+    const fontSize = 14;
+    let columns = Math.floor(width / fontSize);
+    let drops = Array(columns).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.fillStyle = "#0F0";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 33);
+
+    window.addEventListener('resize', () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      columns = Math.floor(width / fontSize);
+      drops = Array(columns).fill(1);
+    });
+  </script>
+</body>
+</html>
