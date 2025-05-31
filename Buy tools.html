@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buy tools</title>
+<!-- Centered Logo -->
+<div class="logo-wrapper">
+  <img src="https://i.ibb.co.com/vxQ3qBLF/Chat-GPT-Image-May-6-2025-10-06-06-AM.png" alt="Cyber Delta Force Logo" class="site-logo">
+</div>
+
+<style>
+  .logo-wrapper {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .site-logo {
+    width: 200px;
+    max-width: 90%;
+    filter: drop-shadow(0 0 10px #00ff00);
+    animation: glow 2s infinite alternate;
+  }
+
+  @keyframes glow {
+    from {
+      filter: drop-shadow(0 0 5px #00ff00);
+    }
+    to {
+      filter: drop-shadow(0 0 20px #00ff00);
+    }
+  }
+</style>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: black;
+      color: #00ff00;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    canvas#matrix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .blur-box {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #00ff00;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Matrix Rain Canvas -->
+  <canvas id="matrix"></canvas>
+
+  <section id="tools" style="padding: 80px 20px; border-top: 1px solid #00ff00; text-align: center;">
+    <h2 style="font-size: 2em; margin-bottom: 40px; text-shadow: 0 0 10px #00ff00;">Our Cyber Tools & Programs</h2>
+    <div class="blur-box">
+      <p>Welcome to the Cyber Delta Force tools section. Here are some of our basic & professional ! </p>
+      <ul style="list-style-type: none; padding: 0; margin-top: 20px; font-size: 1.1em; text-align: left;">
+      <li>🔹 <strong>Basic DDOS tool:- </strong> pkg install python3 apt update apt upgrade -y git clone https://github.com/linuxomar69/cdfdos.git cd cdfdos</li>
+        <li>🔹 <strong>CDFrat</strong> Upcoming......!</li>
+        <li>🔹 <strong>SMS boomber:</strong> Upcoming.......!</li>      
+      </ul>
+      <p>If you want to buy our professional toolkit... contact with uss! </p>
+    </div>
+  </section>
+
+  <script>
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%";
+    const fontSize = 14;
+    let columns = Math.floor(width / fontSize);
+    let drops = Array(columns).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.fillStyle = "#0F0";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 33);
+
+    window.addEventListener('resize', () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      columns = Math.floor(width / fontSize);
+      drops = Array(columns).fill(1);
+    });
+  </script>
+
+</body>
+</html>
