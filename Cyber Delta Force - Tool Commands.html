@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cyber Delta Force - Tool Commands</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family: 'Courier New', monospace;
+      color: #00ff99;
+      background: black;
+      background-image: url('https://c4.wallpaperflare.com/wallpaper/288/472/57/the-sun-minimalism-japan-sword-warrior-hd-wallpaper-preview.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .logo {
+      text-align: center;
+      margin-top: 20px;
+      z-index: 3;
+      position: relative;
+    }
+
+    .logo img {
+      width: 150px;
+      filter: drop-shadow(0 0 10px #00ff99);
+    }
+
+    .content {
+      padding: 30px;
+      position: relative;
+      z-index: 2;
+      margin-top: 10px;
+    }
+
+    h1 {
+      color: #00ff99;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .tool-box {
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid #00ff99;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 700px;
+    }
+
+    .command {
+      background-color: #000;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #00ff99;
+      color: #00ffcc;
+      margin-bottom: 10px;
+      word-break: break-word;
+    }
+
+    .copy-btn {
+      background: #00ff99;
+      border: none;
+      color: #000;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .copy-btn:hover {
+      background: #00cc88;
+    }
+
+    /* 🔼 Back to top button */
+    .top-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #00ff99;
+      color: #000;
+      padding: 10px 14px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 5;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ✅ Matrix Canvas -->
+<canvas id="matrix"></canvas>
+
+<!-- ✅ Logo -->
+<div class="logo">
+  <img src="https://i.ibb.co.com/vxQ3qBLF/Chat-GPT-Image-May-6-2025-10-06-06-AM.png" alt="Cyber Delta Force Logo">
+</div>
+
+<!-- 🛠 Command Section -->
+<div class="content">
+  <h1>🚀 Cyber Delta Force - Tool Commands</h1>
+
+  <div class="tool-box">
+    <h2>🛡 Basic DDoS Tool</h2>
+    <div class="command" id="cmd1"> pkg install python3 apt update apt upgrade -y git clone https://github.com/linuxomar69/cdfdos.git cd cdfdos</div>
+    <button class="copy-btn" onclick="copyToClipboard('cmd1')">📋 Copy</button>
+  </div>
+
+  <div class="tool-box">
+    <h2>🔍 SQLi automated Payload</h2>
+    <div class="command" id="cmd2">apt update apt upgrade -y pkg install git git clone https://github.com/linuxomar69/CDF_sqli pip install -r requirements.txt python3 sqli.py</div>
+    <button class="copy-btn" onclick="copyToClipboard('cmd2')">📋 Copy</button>
+  </div>
+
+  <div class="tool-box">
+    <h2>🔥 WAF Detector Script</h2>
+    <div class="command" id="cmd3">apt update apt upgrade -y pkg install git git clone https://github.com/linuxomar69/osker999 cd osker999 python3 wafchecker.py</div>
+    <button class="copy-btn" onclick="copyToClipboard('cmd3')">📋 Copy</button>
+  </div>
+
+  <!-- Add more tools below if needed -->
+</div>
+
+<!-- 🔼 Back to Top Button -->
+<button class="top-btn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">🔝 Top</button>
+
+<!-- 📋 Copy Script + Matrix + Scroll -->
+<script>
+  function copyToClipboard(id) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      alert("✅ Command copied to clipboard!");
+    });
+  }
+
+  // Matrix Effect
+  const canvas = document.getElementById('matrix');
+  const ctx = canvas.getContext('2d');
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+
+  let letters = "アァイィウヴカガキギクグケゲコゴサザシジスズセゼソゾABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&()&^%+-/~{[|`]}";
+  letters = letters.split("");
+  let fontSize = 14;
+  let columns = canvas.width / fontSize;
+  let drops = [];
+  for (let x = 0; x < columns; x++) drops[x] = 1;
+
+  function draw() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#0f0";
+    ctx.font = fontSize + "px monospace";
+    for (let i = 0; i < drops.length; i++) {
+      const text = letters[Math.floor(Math.random() * letters.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+        drops[i] = 0;
+      drops[i]++;
+    }
+  }
+
+  setInterval(draw, 33);
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+
+  // 🔼 Show Top Button
+  const topBtn = document.querySelector('.top-btn');
+  window.addEventListener("scroll", () => {
+    topBtn.style.display = window.scrollY > 300 ? "block" : "none";
+  });
+</script>
+
+</body>
+</html>
