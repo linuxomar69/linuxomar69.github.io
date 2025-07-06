@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Cyber Delta Force</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+    /* Reset and base */
     * {
       margin: 0;
       padding: 0;
@@ -18,6 +19,7 @@
       overflow-x: hidden;
     }
 
+    /* Matrix Canvas */
     canvas {
       position: fixed;
       top: 0;
@@ -25,8 +27,10 @@
       width: 100vw;
       height: 100vh;
       z-index: -1;
+      background: black;
     }
 
+    /* Logo */
     .logo-wrapper {
       display: flex;
       justify-content: center;
@@ -53,53 +57,40 @@
       }
     }
 
-    .container {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 100px 20px 50px;
-    }
-
-    h1 {
-      font-size: 3em;
-      text-shadow: 0 0 15px #00ff00;
-    }
-
-    p {
-      font-size: 1.2em;
-      max-width: 800px;
-      margin: 20px auto;
-      text-shadow: 0 0 5px #00ff00;
-    }
-
-    .btn {
-      margin-top: 30px;
-      padding: 12px 24px;
-      background-color: transparent;
-      border: 2px solid #00ff00;
+    /* Container for text */
+    .blur-box {
+      max-width: 900px;
+      margin: 40px auto 80px;
+      padding: 25px 30px;
+      background: rgba(0, 255, 0, 0.05);
+      border-radius: 16px;
+      border: 1px solid rgba(0, 255, 0, 0.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 0 25px rgba(0, 255, 0, 0.2);
       color: #00ff00;
-      cursor: pointer;
-      font-size: 1em;
-      transition: all 0.3s ease;
+      font-size: 1.15em;
+      line-height: 1.7;
+      text-shadow: 0 0 6px #00ff00;
+      text-align: center;
     }
 
-    .btn:hover {
-      background-color: #00ff00;
-      color: black;
-    }
-
+    /* Section styling */
     section {
-      padding: 80px 20px;
+      padding: 80px 20px 60px;
       border-top: 1px solid #00ff00;
       text-align: center;
+      max-width: 1000px;
+      margin: auto;
     }
 
     h2 {
-      font-size: 2em;
+      font-size: 2.2em;
       margin-bottom: 40px;
       text-shadow: 0 0 10px #00ff00;
     }
 
+    /* Members layout */
     .members {
       display: flex;
       justify-content: center;
@@ -114,23 +105,85 @@
       border-radius: 12px;
       width: 250px;
       box-shadow: 0 0 10px #00ff0022;
-      transition: transform 0.3s;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
     }
 
     .member-card:hover {
       transform: scale(1.05);
+      box-shadow: 0 0 15px #00ff00aa;
     }
 
     .member-name {
       font-size: 1.3em;
       margin-bottom: 8px;
+      font-weight: bold;
+      text-shadow: 0 0 5px #00ff00;
     }
 
     .member-role {
       font-size: 0.95em;
       color: #aaffaa;
+      margin-bottom: 15px;
     }
 
+    /* Glow Button */
+    .glow-button {
+      position: relative;
+      display: inline-block;
+      padding: 10px 25px;
+      color: #00ff00;
+      font-size: 1em;
+      font-weight: bold;
+      border: 2px solid #00ff00;
+      background: transparent;
+      border-radius: 8px;
+      text-shadow: 0 0 5px #00ff00;
+      cursor: pointer;
+      overflow: hidden;
+      z-index: 1;
+      transition: all 0.3s ease;
+      animation: pulse-glow 2.5s infinite ease-in-out;
+      text-decoration: none;
+      user-select: none;
+    }
+
+    .glow-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, #00ff00, transparent);
+      transition: all 0.4s ease;
+      z-index: -1;
+    }
+
+    .glow-button:hover::before {
+      left: 100%;
+    }
+
+    .glow-button:hover {
+      background-color: rgba(0, 255, 0, 0.15);
+      box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00;
+      color: black;
+      text-shadow: none;
+    }
+
+    @keyframes pulse-glow {
+      0% {
+        box-shadow: 0 0 6px #00ff00;
+      }
+      50% {
+        box-shadow: 0 0 14px #00ff00;
+      }
+      100% {
+        box-shadow: 0 0 6px #00ff00;
+      }
+    }
+
+    /* Contact info */
     .contact-info {
       max-width: 500px;
       margin: auto;
@@ -142,13 +195,21 @@
       -webkit-backdrop-filter: blur(10px);
       box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
       text-shadow: 0 0 5px #00ff00;
-      transition: 0.3s;
+      transition: 0.3s ease;
+      color: #00ff00;
+      font-size: 1.1em;
+      text-align: center;
     }
 
     .contact-info p {
       margin: 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
     }
 
+    /* Social icons */
     .social-icons {
       max-width: 500px;
       margin: auto;
@@ -160,7 +221,7 @@
       -webkit-backdrop-filter: blur(10px);
       box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
       text-shadow: 0 0 5px #00ff00;
-      transition: 0.3s;
+      transition: 0.3s ease;
       display: flex;
       justify-content: center;
       gap: 30px;
@@ -177,234 +238,8 @@
       transform: scale(1.2);
       filter: brightness(1.5) drop-shadow(0 0 5px #00ff00);
     }
-  </style>
-</head>
-<body>
-  <canvas id="matrix"></canvas>
 
-  <div class="logo-wrapper">
-    <img src="https://i.ibb.co.com/vxQ3qBLF/Chat-GPT-Image-May-6-2025-10-06-06-AM.png" alt="Cyber Delta Force Logo" class="site-logo">
-  </div>
- <div class="blur-box">
-      <p>Hello, we are Cyber Delta Force team! We work for the security of the country! And if you want to work shoulder to shoulder with us, then contact us. Our email and telegram channel links are given below! And we have two sectors, one is the junior sector, the other is the senior sector. Now here are four people who have joined the sector, their names and details are mentioned! Digital defenders. White hat Team. We scan, we break, we protect.</p>
-    </div>
-       
-
-  <section id="members">
-    <h2>Our Members</h2>
-    <div class="members">
-      <div class="member-card">
-        <div class="member-name">🕶️ [main admin] x!t eXploIteR [omar_faruk]</div>
-        <div class="member-role">Lead Penetration Tester & exploit the website vulnerability</div>
-      </div>
-      <div class="member-card">
-        <div class="member-name">🛡️ AstrO BlazE [arnob]</div>
-        <div class="member-role">inforamation gathering master</div>
-      </div>
-      <div class="member-card">
-        <div class="member-name">🧠 OSKER999 [jitu]</div>
-        <div class="member-role">Facebook speacialist & website attacker ! </div>
-      </div>
-      <div class="member-card">
-        <div class="member-name">🎯 Gl!cthHuNt3r [samir]</div>
-        <div class="member-role">Bug Bounty Hunter & website designer</div>
-      </div>
-    </div>
-  </section>
-<!-- Terminal Box -->
-<div style="display: flex; justify-content: center; margin-top: 80px;">
-  <div style="
-    background-color: rgba(0, 0, 0, 0.85); 
-    padding: 20px; 
-    border: 2px solid #00ff00; 
-    border-radius: 10px; 
-    color: #00ff00; 
-    font-family: monospace; 
-    width: 90%; 
-    max-width: 700px; 
-    box-shadow: 0 0 15px #00ff00;
-    text-align: left;
-    white-space: pre-wrap;
-    overflow-y: auto;
-    min-height: 150px;
-  ">
-    <div id="terminalText"></div>
-  </div>
-</div>
-
-<script>
-  const terminalString = `Entering server of Cyber Delta Force...
-[✓]       >_<   Loading matrix core...
-[✓] Scanning for targets...
-[✓]     Vulnerability found: SQL Injection
-[!]  [.................>]Exploiting the vuln...
-[✓] [.................................>] Bypass successful
-[✓] [...................>] Access granted to /admin/dashboard
-[✓] [...........>]Dumping credentials
-[✓] [.......................................>]Data exfiltration in progress...
-[✓] *_*    Database Hacked Succesful !!! 
-[✓]                  Mission complete.
-Welcome, X!T eXplOiteR`;
-
-  let index = 0;
-  const speed = 50;
-  const terminalElement = document.getElementById("terminalText");
-
-  function typeTerminalText() {
-    if (index < terminalString.length) {
-      terminalElement.innerHTML += terminalString.charAt(index);
-      index++;
-      setTimeout(typeTerminalText, speed);
-    }
-  }
-
-  window.onload = typeTerminalText;
-</script>
-<!-- Clock + Typing + Hacker Image -->
-<div style="display: flex; justify-content: center; align-items: center; gap: 40px; margin-top: 50px; flex-wrap: wrap;">
-  
-  <!-- Circle Clock -->
-  <div id="hackerClock" style="
-    font-size: 2em;
-    color: #00ff00;
-    text-shadow: 0 0 10px #00ff00;
-    font-family: 'Courier New', monospace;
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    border: 3px solid #00ff00;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0,255,0,0.05);
-    box-shadow: 0 0 20px #00ff0055, inset 0 0 10px #00ff00;
-    animation: glowClock 2s infinite alternate;
-  ">⌛ 00:00:00</div>
-
-  <!-- Hacker Typing Terminal -->
-  <div style="
-    background-color: rgba(0,0,0,0.9); 
-    padding: 20px;
-    border: 2px solid #00ff00;
-    color: #00ff00;
-    font-family: monospace;
-    width: 300px;
-    height: 180px;
-    border-radius: 12px;
-    overflow-y: hidden;
-    box-shadow: 0 0 15px #00ff00;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  ">
-    <div style="margin-bottom: 10px; color: #0f0;">👨‍💻 Hacker Typing:</div>
-    <div id="typingEffect" style="white-space: pre-line;"></div>
-  </div>
-
-  <!-- Hacker Image -->
-  <div>
-    <img src="https://images.pexels.com/photos/5380589/pexels-photo-5380589.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Real Hacker" style="
-      width: 180px;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 12px;
-      border: 2px solid #00ff00;
-      box-shadow: 0 0 20px #00ff00;
-    ">
-  </div>
-</div>
-
-<style>
-  @keyframes glowClock {
-    from {
-      box-shadow: 0 0 10px #00ff00, inset 0 0 5px #00ff00;
-    }
-    to {
-      box-shadow: 0 0 25px #00ff00, inset 0 0 15px #00ff00;
-    }
-  }
-</style>
-
-<script>
-  // Clock
-  function updateClock() {
-    const clockElement = document.getElementById("hackerClock");
-    const now = new Date();
-
-    let hours = now.getHours().toString().padStart(2, '0');
-    let minutes = now.getMinutes().toString().padStart(2, '0');
-    let seconds = now.getSeconds().toString().padStart(2, '0');
-
-    clockElement.textContent = `⌛ ${hours}:${minutes}:${seconds}`;
-  }
-  setInterval(updateClock, 1000);
-  updateClock();
-
-  // Typing effect
-  const randomLines = [
-    "nmap -sV -T4 192.168.1.1",
-    "sqlmap -u http://target.com/login --dump",
-    "hydra -l admin -P rockyou.txt target ssh",
-    "nc -lvnp 4444",
-    "scp exploit.py user@target:/tmp",
-    "python3 exploit.py",
-    "msfconsole > use exploit/windows/smb/ms17_010_eternalblue",
-    "ssh root@192.168.1.10",
-    "echo 'Access Granted' >> logs.txt",
-    "cat /etc/passwd"
-  ];
-
-  const typingEl = document.getElementById("typingEffect");
-
-  function typeHackerStuff() {
-    let line = randomLines[Math.floor(Math.random() * randomLines.length)];
-    let i = 0;
-    const interval = setInterval(() => {
-      typingEl.textContent += line.charAt(i);
-      i++;
-      if (i >= line.length) {
-        typingEl.textContent += '\n';
-        clearInterval(interval);
-        setTimeout(typeHackerStuff, 1000);
-      }
-    }, 50);
-  }
-
-  typeHackerStuff();
-</script>
-</section>
-  <section id="tools">
-    <h2 style="text-align: center; color: #00ff00;">Get Our Basic Tools</h2>
-    <div class="tools-container">
-      
-      <div class="tool-card">
-        <h3>🔥Waf Detector</h3>
-        <p>Firewall Detector!!!</p>
-        <a href="/Cyber Delta Force - Tool Commands.html">
-          <button class="btn">Get Now</button>
-        </a>
-      </div>
-  
-      <div class="tool-card">
-        <h3>🔥 DDOS Tools</h3>
-        <p>High-speed testing tool for load/stress analysis</p>
-        <a href="/Cyber Delta Force - Tool Commands.html">
-          <button class="btn">Get Now</button>
-        </a>
-      </div>
-  
-      <div class="tool-card">
-        <h3>🎯Basic SQLI</h3>
-        <p>Automated sql injection !</p>
-        <a href="/Cyber Delta Force - Tool Commands.html">
-          <button class="btn">Get Now</button>
-        </a>
-      </div>
-  
-    </div>
-  </section>
-  
-  <style>
+    /* Tools container */
     .tools-container {
       display: flex;
       justify-content: center;
@@ -412,7 +247,7 @@ Welcome, X!T eXplOiteR`;
       gap: 20px;
       padding: 20px;
     }
-  
+
     .tool-card {
       background: rgba(0, 255, 0, 0.05);
       border: 1px solid #00ff00;
@@ -421,20 +256,27 @@ Welcome, X!T eXplOiteR`;
       width: 250px;
       text-align: center;
       box-shadow: 0 0 15px #00ff00;
-      transition: transform 0.3s;
+      transition: transform 0.3s ease;
+      color: #00ff00;
     }
-  
+
+    .tool-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #00ff00;
+    }
+
     .tool-card h3 {
       font-size: 1.3em;
       margin-bottom: 10px;
       color: #00ff00;
     }
-  
+
     .tool-card p {
       font-size: 0.95em;
-      color: #ccc;
+      color: #aaffaa;
+      margin-bottom: 15px;
     }
-  
+
     .btn {
       margin-top: 10px;
       background-color: #00ff00;
@@ -444,22 +286,209 @@ Welcome, X!T eXplOiteR`;
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
+      text-shadow: none;
+      transition: background-color 0.3s ease;
+      user-select: none;
     }
-  
+
     .btn:hover {
       background-color: #00cc00;
     }
+
+    /* Terminal box */
+    .terminal-wrapper {
+      display: flex;
+      justify-content: center;
+      margin: 80px auto 40px;
+      max-width: 700px;
+    }
+
+    .terminal-box {
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 20px;
+      border: 2px solid #00ff00;
+      border-radius: 10px;
+      color: #00ff00;
+      font-family: monospace;
+      width: 100%;
+      box-shadow: 0 0 15px #00ff00;
+      text-align: left;
+      white-space: pre-wrap;
+      overflow-y: auto;
+      min-height: 150px;
+      user-select: none;
+    }
+
+    /* Clock + typing + image container */
+    .clock-type-hacker {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      margin: 50px auto 80px;
+      flex-wrap: wrap;
+      max-width: 1000px;
+    }
+
+    /* Clock */
+    #hackerClock {
+      font-size: 2em;
+      color: #00ff00;
+      text-shadow: 0 0 10px #00ff00;
+      font-family: 'Courier New', monospace;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 3px solid #00ff00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 255, 0, 0.05);
+      box-shadow: 0 0 20px #00ff0055, inset 0 0 10px #00ff00;
+      animation: glowClock 2s infinite alternate;
+      user-select: none;
+    }
+
+    @keyframes glowClock {
+      from {
+        box-shadow: 0 0 10px #00ff00, inset 0 0 5px #00ff00;
+      }
+      to {
+        box-shadow: 0 0 25px #00ff00, inset 0 0 15px #00ff00;
+      }
+    }
+
+    /* Hacker typing box */
+    .typing-terminal {
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 20px;
+      border: 2px solid #00ff00;
+      color: #00ff00;
+      font-family: monospace;
+      width: 300px;
+      height: 180px;
+      border-radius: 12px;
+      overflow-y: hidden;
+      box-shadow: 0 0 15px #00ff00;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      user-select: none;
+    }
+
+    .typing-terminal .header {
+      margin-bottom: 10px;
+      color: #0f0;
+      font-weight: bold;
+    }
+
+    #typingEffect {
+      white-space: pre-line;
+      flex-grow: 1;
+      font-size: 0.9em;
+      line-height: 1.3;
+    }
+
+    /* Hacker Image */
+    .hacker-image img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid #00ff00;
+      box-shadow: 0 0 20px #00ff00;
+      user-select: none;
+    }
   </style>
-  
-</section>
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+
+  <div class="logo-wrapper">
+    <img src="https://i.ibb.co/vxQ3qBLF/Chat-GPT-Image-May-6-2025-10-06-06-AM.png" alt="Cyber Delta Force Logo" class="site-logo" />
+  </div>
+
+  <div class="blur-box">
+    <p>
+      Hello, we are Cyber Delta Force team! We work for the security of the country! And if you want to work shoulder to shoulder with us, then contact us. Our email and telegram channel links are given below! And we have two sectors, one is the junior sector, the other is the senior sector. Now here are four people who have joined the sector, their names and details are mentioned! Digital defenders. White hat Team. We scan, we break, we protect.
+    </p>
+  </div>
+
+  <section id="members">
+    <h2>Our Members</h2>
+    <div class="members">
+      <div class="member-card">
+        <div class="member-name">🕶️ [main admin] x!t eXploIteR [omar_faruk]</div>
+        <div class="member-role">Lead Penetration Tester &amp; exploit the website vulnerability</div>
+        <a href="xit.html" class="glow-button">About</a>
+      </div>
+
+      <div class="member-card">
+        <div class="member-name">🛡️ AstrO BlazE [arnob]</div>
+        <div class="member-role">Information gathering master</div>
+        <a href="astro.html" class="glow-button">About</a>
+      </div>
+
+      <div class="member-card">
+        <div class="member-name">🧠 OSKER999 [jitu]</div>
+        <div class="member-role">Facebook specialist &amp; website attacker</div>
+        <a href="osker.html" class="glow-button">About</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="terminal-wrapper">
+    <div class="terminal-box">
+      <div id="terminalText"></div>
+    </div>
+  </div>
+
+  <div class="clock-type-hacker">
+    <!-- Clock -->
+    <div id="hackerClock">⌛ 00:00:00</div>
+
+    <!-- Hacker Typing Terminal -->
+    <div class="typing-terminal">
+      <div class="header">👨‍💻 Hacker Typing:</div>
+      <div id="typingEffect"></div>
+    </div>
+
+    <!-- Hacker Image -->
+    <div class="hacker-image">
+      <img src="https://images.pexels.com/photos/5380589/pexels-photo-5380589.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Real Hacker" />
+    </div>
+  </div>
+
+  <section id="tools">
+    <h2>Get Our Basic Tools</h2>
+    <div class="tools-container">
+      <div class="tool-card">
+        <h3>🔥 Waf Detector</h3>
+        <p>Firewall Detector!!!</p>
+        <a href="/Cyber Delta Force - Tool Commands.html"><button class="btn">Get Now</button></a>
+      </div>
+
+      <div class="tool-card">
+        <h3>🔥 DDOS Tools</h3>
+        <p>High-speed testing tool for load/stress analysis</p>
+        <a href="/Cyber Delta Force - Tool Commands.html"><button class="btn">Get Now</button></a>
+      </div>
+
+      <div class="tool-card">
+        <h3>🎯 Basic SQLI</h3>
+        <p>Automated sql injection!</p>
+        <a href="/Cyber Delta Force - Tool Commands.html"><button class="btn">Get Now</button></a>
+      </div>
+    </div>
+  </section>
 
   <section id="contact">
     <h2>Contact Us</h2>
     <div class="contact-info">
       <p>📧 Email: cyberdeltaforce@gmail.com</p>
       <p>
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="Telegram" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;">
-        @t.me/websiteatck
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="Telegram" style="width: 20px; height: 20px; vertical-align: middle;" />
+        <a href="https://t.me/websiteatck" target="_blank" style="color: #00ff00; text-decoration: none;">@t.me/websiteatck</a>
       </p>
     </div>
   </section>
@@ -467,16 +496,17 @@ Welcome, X!T eXplOiteR`;
   <section id="follow">
     <h2>Follow Us</h2>
     <div class="social-icons">
-      <a href="https://github.com/linuxomar69/" title="GitHub" target="_blank">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+      <a href="https://github.com/linuxomar69/" title="GitHub" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
       </a>
-      <a href="https://www.facebook.com/profile.php?id=61571864574929" title="Facebook" target="_blank">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg" alt="Facebook">
+      <a href="https://www.facebook.com/profile.php?id=61571864574929" title="Facebook" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg" alt="Facebook" />
       </a>
     </div>
   </section>
 
   <script>
+    // Matrix effect
     const canvas = document.getElementById("matrix");
     const ctx = canvas.getContext("2d");
 
@@ -510,7 +540,7 @@ Welcome, X!T eXplOiteR`;
 
     setInterval(drawMatrix, 33);
 
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       width = window.innerWidth;
       height = window.innerHeight;
       canvas.width = width;
@@ -518,6 +548,81 @@ Welcome, X!T eXplOiteR`;
       columns = Math.floor(width / fontSize);
       drops = Array(columns).fill(1);
     });
+
+    // Terminal typing effect
+    const terminalString = `Entering server of Cyber Delta Force...
+[✓]       >_<   Loading matrix core...
+[✓] Scanning for targets...
+[✓]     Vulnerability found: SQL Injection
+[!]  [.................>]Exploiting the vuln...
+[✓] [.................................>] Bypass successful
+[✓] [...................>] Access granted to /admin/dashboard
+[✓] [...........>]Dumping credentials
+[✓] [.......................................>]Data exfiltration in progress...
+[✓] *_*    Database Hacked Succesful !!! 
+[✓]                  Mission complete.
+Welcome, X!T eXplOiteR`;
+
+    let index = 0;
+    const speed = 50;
+    const terminalElement = document.getElementById("terminalText");
+
+    function typeTerminalText() {
+      if (index < terminalString.length) {
+        terminalElement.innerHTML += terminalString.charAt(index);
+        index++;
+        setTimeout(typeTerminalText, speed);
+      }
+    }
+
+    window.onload = () => {
+      typeTerminalText();
+      updateClock();
+      typeHackerStuff();
+    };
+
+    // Clock
+    function updateClock() {
+      const clockElement = document.getElementById("hackerClock");
+      const now = new Date();
+
+      let hours = now.getHours().toString().padStart(2, "0");
+      let minutes = now.getMinutes().toString().padStart(2, "0");
+      let seconds = now.getSeconds().toString().padStart(2, "0");
+
+      clockElement.textContent = `⌛ ${hours}:${minutes}:${seconds}`;
+    }
+    setInterval(updateClock, 1000);
+
+    // Hacker typing effect
+    const randomLines = [
+      "nmap -sV -T4 192.168.1.1",
+      "sqlmap -u http://target.com/login --dump",
+      "hydra -l admin -P rockyou.txt target ssh",
+      "nc -lvnp 4444",
+      "scp exploit.py user@target:/tmp",
+      "python3 exploit.py",
+      "msfconsole > use exploit/windows/smb/ms17_010_eternalblue",
+      "ssh root@192.168.1.10",
+      "echo 'Access Granted' >> logs.txt",
+      "cat /etc/passwd"
+    ];
+
+    const typingEl = document.getElementById("typingEffect");
+
+    function typeHackerStuff() {
+      let line = randomLines[Math.floor(Math.random() * randomLines.length)];
+      let i = 0;
+      const interval = setInterval(() => {
+        typingEl.textContent += line.charAt(i);
+        i++;
+        if (i >= line.length) {
+          typingEl.textContent += "\n";
+          clearInterval(interval);
+          setTimeout(typeHackerStuff, 1000);
+        }
+      }, 50);
+    }
   </script>
 </body>
 </html>
