@@ -17,13 +17,6 @@
       background-attachment: fixed;
     }
 
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
-
     .logo {
       text-align: center;
       margin-top: 20px;
@@ -83,7 +76,6 @@
       background: #00cc88;
     }
 
-    /* 🔼 Back to top button */
     .top-btn {
       position: fixed;
       bottom: 20px;
@@ -101,9 +93,6 @@
   </style>
 </head>
 <body>
-
-<!-- ✅ Matrix Canvas -->
-<canvas id="matrix"></canvas>
 
 <!-- ✅ Logo -->
 <div class="logo">
@@ -149,13 +138,12 @@
     <button class="copy-btn" onclick="copyToClipboard('cmd3')">📋 Copy</button>
   </div>
 
-  <!-- Add more tools below if needed -->
 </div>
 
 <!-- 🔼 Back to Top Button -->
 <button class="top-btn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">🔝 Top</button>
 
-<!-- 📋 Copy Script + Matrix + Scroll -->
+<!-- 📋 Copy Script + Scroll Show -->
 <script>
   function copyToClipboard(id) {
     const text = document.getElementById(id).innerText;
@@ -163,39 +151,6 @@
       alert("✅ Command copied to clipboard!");
     });
   }
-
-  // Matrix Effect
-  const canvas = document.getElementById('matrix');
-  const ctx = canvas.getContext('2d');
-  canvas.height = window.innerHeight;
-  canvas.width = window.innerWidth;
-
-  let letters = "アァイィウヴカガキギクグケゲコゴサザシジスズセゼソゾABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&()&^%+-/~{[|`]}";
-  letters = letters.split("");
-  let fontSize = 14;
-  let columns = canvas.width / fontSize;
-  let drops = [];
-  for (let x = 0; x < columns; x++) drops[x] = 1;
-
-  function draw() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#0f0";
-    ctx.font = fontSize + "px monospace";
-    for (let i = 0; i < drops.length; i++) {
-      const text = letters[Math.floor(Math.random() * letters.length)];
-      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
-        drops[i] = 0;
-      drops[i]++;
-    }
-  }
-
-  setInterval(draw, 33);
-  window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
 
   // 🔼 Show Top Button
   const topBtn = document.querySelector('.top-btn');
