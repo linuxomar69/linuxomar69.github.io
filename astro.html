@@ -22,6 +22,9 @@
     }
 
     .profile-box {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
       backdrop-filter: blur(12px);
       background: rgba(0, 0, 0, 0.3);
       border: 1px solid #00ff99;
@@ -32,6 +35,11 @@
       color: #00ffcc;
       box-shadow: 0 0 15px #00ff99;
       text-align: center;
+    }
+
+    .profile-box.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     h2 {
@@ -71,7 +79,7 @@
 <body>
 
 <div class="container">
-  <div class="profile-box">
+  <div class="profile-box" id="astroBox">
     <h2>⚔ About Astro Blaze</h2>
     <p>I’m the shadow behind your system’s shield, diving deep into malware & ransomware to protect the digital realm.</p>
     <p>💀 Cyber Delta Force’s malware eradicator, uncovering hidden threats and neutralizing them before damage is done.</p>
@@ -91,6 +99,23 @@
     </div>
   </div>
 </div>
+
+<script>
+  // Fade-in on scroll
+  const astroBox = document.getElementById('astroBox');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.2
+  });
+
+  observer.observe(astroBox);
+</script>
 
 </body>
 </html>
