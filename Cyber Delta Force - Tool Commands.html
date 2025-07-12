@@ -43,12 +43,20 @@
     }
 
     .tool-box {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
       background: rgba(0, 0, 0, 0.85);
       border: 1px solid #00ff99;
       border-radius: 10px;
       padding: 20px;
       margin: 20px auto;
       max-width: 700px;
+    }
+
+    .tool-box.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .command {
@@ -89,6 +97,12 @@
       cursor: pointer;
       z-index: 5;
       display: none;
+      transition: 0.3s ease;
+    }
+
+    .top-btn:hover {
+      background: #00cc88;
+      transform: scale(1.1);
     }
   </style>
 </head>
@@ -103,69 +117,71 @@
 <div class="content">
   <h1>🚀 Cyber Delta Force - Tool Commands</h1>
 
+  <!-- 🧪 Fade-in tool boxes -->
   <div class="tool-box">
     <h2>🛡 Basic DDoS Tool</h2>
     <div class="command" id="cmd1">apt update 
-      apt upgrade -y 
-      pkg install python3
-      git clone https://github.com/linuxomar69/CDF_DDOS 
-      cd CDF_DDOS 
-      ls 
-      python3 http-v1.py</div>
+apt upgrade -y 
+pkg install python3
+git clone https://github.com/linuxomar69/CDF_DDOS 
+cd CDF_DDOS 
+ls 
+python3 http-v1.py</div>
     <button class="copy-btn" onclick="copyToClipboard('cmd1')">📋 Copy</button>
   </div>
 
   <div class="tool-box">
     <h2>🔍 SQLi automated Payload</h2>
     <div class="command" id="cmd2">apt update 
-      apt upgrade -y 
-      pkg install python3
-      git clone https://github.com/linuxomar69/astrosqli/ 
-      cd astrosqli 
-      ls 
-      python3 v1.py</div>
+apt upgrade -y 
+pkg install python3
+git clone https://github.com/linuxomar69/astrosqli/ 
+cd astrosqli 
+ls 
+python3 v1.py</div>
     <button class="copy-btn" onclick="copyToClipboard('cmd2')">📋 Copy</button>
   </div>
 
   <div class="tool-box">
     <h2>🔥 WAF Detector Script</h2>
     <div class="command" id="cmd3">apt update 
-      apt upgrade -y
-      pkg install git 
-      git clone https://github.com/linuxomar69/osker999 
-      cd osker999 
-      python3 wafchecker.py</div>
+apt upgrade -y
+pkg install git 
+git clone https://github.com/linuxomar69/osker999 
+cd osker999 
+python3 wafchecker.py</div>
     <button class="copy-btn" onclick="copyToClipboard('cmd3')">📋 Copy</button>
   </div>
 
   <div class="tool-box">
-    <h2>👾CDF-Toxic-Ransomware [Termux]</h2>
-    <div class="command" id="cmd3">apt update 
-      git clone https://github.com/linuxomar69/CDF-Toxic-V1.git
-      cd CDF-Toxic-V1
-     pip install requests
-     bash termux.sh
-     python3 CDF.py</div>
-    <button class="copy-btn" onclick="copyToClipboard('cmd3')">📋 Copy</button>
+    <h2>💀 CDF-Toxic-Ransomware [Termux]</h2>
+    <div class="command" id="cmd4">apt update 
+git clone https://github.com/linuxomar69/CDF-Toxic-V1.git
+cd CDF-Toxic-V1
+pip install requests
+bash termux.sh
+python3 CDF.py</div>
+    <button class="copy-btn" onclick="copyToClipboard('cmd4')">📋 Copy</button>
+  </div>
+
+  <div class="tool-box">
+    <h2>👾 CDF-Toxic-Ransomware [Linux]</h2>
+    <div class="command" id="cmd5">apt update 
+git clone https://github.com/linuxomar69/CDF-Toxic-V1.git
+cd CDF-Toxic-V1
+pip install requests
+bash linux.sh
+python3 CDF.py</div>
+    <button class="copy-btn" onclick="copyToClipboard('cmd5')">📋 Copy</button>
   </div>
 </div>
 
-<div class="tool-box">
-  <h2>👾CDF-Toxic-Ransomware [Linux]</h2>
-  <div class="command" id="cmd3">apt update 
-    git clone https://github.com/linuxomar69/CDF-Toxic-V1.git
-    cd CDF-Toxic-V1
-    pip install requests
-    bash linux.sh
-    python3 CDF.py</div>
-  <button class="copy-btn" onclick="copyToClipboard('cmd3')">📋 Copy</button>
-</div>
-</div>
 <!-- 🔼 Back to Top Button -->
 <button class="top-btn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">🔝 Top</button>
 
-<!-- 📋 Copy Script + Scroll Show -->
+<!-- ✅ Scripts -->
 <script>
+  // Copy function
   function copyToClipboard(id) {
     const text = document.getElementById(id).innerText;
     navigator.clipboard.writeText(text).then(() => {
@@ -173,10 +189,27 @@
     });
   }
 
-  // 🔼 Show Top Button
+  // Show Top Button on scroll
   const topBtn = document.querySelector('.top-btn');
   window.addEventListener("scroll", () => {
     topBtn.style.display = window.scrollY > 300 ? "block" : "none";
+  });
+
+  // Fade in on scroll using Intersection Observer
+  const toolBoxes = document.querySelectorAll('.tool-box');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target); // Animate only once
+      }
+    });
+  }, {
+    threshold: 0.2
+  });
+
+  toolBoxes.forEach(box => {
+    observer.observe(box);
   });
 </script>
 
