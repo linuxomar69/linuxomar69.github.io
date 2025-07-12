@@ -22,6 +22,9 @@
     }
 
     .profile-box {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
       backdrop-filter: blur(12px);
       background: rgba(0, 0, 0, 0.3);
       border: 1px solid #00ff99;
@@ -32,6 +35,11 @@
       color: #00ffcc;
       box-shadow: 0 0 15px #00ff99;
       text-align: center;
+    }
+
+    .profile-box.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     h2 {
@@ -53,7 +61,7 @@
       margin: 0 5px;
       text-decoration: none;
       color: #00ff99;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, color 0.3s ease;
     }
 
     .social-icons a:hover {
@@ -71,7 +79,7 @@
 <body>
 
 <div class="container">
-  <div class="profile-box">
+  <div class="profile-box" id="oskerBox">
     <h2>🌐 About Osker_999</h2>
     <p>Connecting the dots across digital worlds — crafting viral campaigns and managing cyber presence like a pro.</p>
     <p>💀 Cyber Delta Force’s social media strategist, boosting influence and gathering intel from online networks.</p>
@@ -91,6 +99,24 @@
     </div>
   </div>
 </div>
+
+<!-- 👇 Scroll Observer Script -->
+<script>
+  const oskerBox = document.getElementById('oskerBox');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target); // only once
+      }
+    });
+  }, {
+    threshold: 0.2
+  });
+
+  observer.observe(oskerBox);
+</script>
 
 </body>
 </html>
