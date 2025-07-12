@@ -22,8 +22,11 @@
     }
 
     .profile-box {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
       backdrop-filter: blur(12px);
-      background: rgba(0, 0, 0, 0.3); /* semi-transparent */
+      background: rgba(0, 0, 0, 0.3);
       border: 1px solid #00ff99;
       border-radius: 20px;
       padding: 30px;
@@ -32,6 +35,11 @@
       color: #00ffcc;
       box-shadow: 0 0 15px #00ff99;
       text-align: center;
+    }
+
+    .profile-box.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     h1 {
@@ -61,7 +69,6 @@
       color: #00cc88;
     }
 
-    /* Facebook Icon SVG */
     .facebook-icon {
       width: 32px;
       height: 32px;
@@ -73,9 +80,9 @@
 <body>
 
 <div class="container">
-  <div class="profile-box">
+  <div class="profile-box" id="aboutBox">
     <h1>⚔ About x!t_eXploiteR</h1>
-    <p>Hey Yoo Im A CEO Of Cyber Delta FOrce !! </p>
+    <p>Hey Yoo Im A CEO Of Cyber Delta FOrce !!</p>
     <p>💀 Cyber Delta Force's elite exploitation specialist.</p>
     <p>🔍 Expert in finding and exploiting web-based vulnerabilities including SQLi, XSS, RCE, and more.</p>
     <p>🎯 Passionate about BlackHAT hacking, and bypassing WAFs like a shadow in the matrix.</p>
@@ -83,16 +90,33 @@
     <p>📛 Known for turning 403s into doors 🚪.</p>
     <p>"We do not carry out cyber attacks for money or personal gain. We conduct cyber attacks solely for justice and peace."</p>
     <p>🔥 Motto: “We Scan • We Exploit • We Own”</p>
+    
     <div class="social-icons">
       <a href="https://www.facebook.com/linuxomar69" target="_blank" aria-label="Facebook">
-        <!-- Facebook SVG Icon -->
         <svg class="facebook-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.325v21.351C0 23.4.6 24 1.325 24h11.49v-9.294H9.692v-3.622h3.123V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.466.099 2.797.143v3.24l-1.918.001c-1.504 0-1.794.715-1.794 1.763v2.311h3.587l-.467 3.622h-3.12V24h6.116c.725 0 1.325-.6 1.325-1.324V1.325C24 .6 23.4 0 22.675 0z"/>
         </svg>
       </a>
     </div>
-
   </div>
 </div>
+
+<script>
+  // Scroll Fade-In Logic
+  const box = document.getElementById('aboutBox');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target); // Animate only once
+      }
+    });
+  }, {
+    threshold: 0.2
+  });
+
+  observer.observe(box);
+</script>
+
 </body>
 </html>
